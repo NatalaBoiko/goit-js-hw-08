@@ -12,5 +12,9 @@ const playingTime = (evt) => {
 
 player.on("timeupdate", throttle(playingTime, 1000));
 
-player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY));
+const savedTime = localStorage.getItem(LOCALSTORAGE_KEY);
+
+if (savedTime) {
+  player.setCurrentTime(savedTime);
+}
 localStorage.removeItem(LOCALSTORAGE_KEY);
