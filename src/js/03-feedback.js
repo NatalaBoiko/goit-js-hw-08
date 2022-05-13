@@ -5,13 +5,13 @@ const feedbackForm = document.querySelector(".feedback-form");
 const LOCALSTORAGE_KEY = "feedback-form-state";
 
 let feedbackFormState = {};
+populateForm();
 
 const onInput = (e) => {
-  const name = e.target.name;
-  const message = e.target.value;
-
+  // const name = e.target.name;
+  // const message = e.target.value;
   if (feedbackFormState) {
-    feedbackFormState[name] = message;
+    feedbackFormState[e.target.name] = e.target.value;
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(feedbackFormState));
   }
 };
@@ -30,7 +30,7 @@ const onFormSubmit = (e) => {
   }
 };
 
-const populateForm = () => {
+function populateForm() {
   if (localStorage.getItem(LOCALSTORAGE_KEY)) {
     feedbackFormState = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
   }
@@ -40,9 +40,7 @@ const populateForm = () => {
   if (feedbackFormState.message) {
     feedbackForm.message.value = feedbackFormState.message;
   }
-};
+}
 
-// populateForm();
 feedbackForm.addEventListener("input", throttle(onInput, 1000));
 feedbackForm.addEventListener("submit", onFormSubmit);
-populateForm();
