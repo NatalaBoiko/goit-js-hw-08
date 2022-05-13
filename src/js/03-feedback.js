@@ -27,6 +27,7 @@ const onFormSubmit = (e) => {
     console.log(feedbackFormState);
     feedbackForm.reset();
     localStorage.removeItem(LOCALSTORAGE_KEY);
+    feedbackFormState = {};
   }
 };
 
