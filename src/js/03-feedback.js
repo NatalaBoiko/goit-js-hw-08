@@ -8,10 +8,10 @@ let feedbackFormState = {};
 populateForm();
 
 const onInput = (e) => {
-  // const name = e.target.name;
-  // const message = e.target.value;
+  const name = e.target.name;
+  const message = e.target.value;
   if (feedbackFormState) {
-    feedbackFormState[e.target.name] = e.target.value;
+    feedbackFormState[name] = message;
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(feedbackFormState));
   }
 };
